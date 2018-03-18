@@ -20,6 +20,7 @@ add-apt-repository \
         stable"
 apt-get update
 apt-get install docker-ce
+mkdir /etc/docker
 touch /etc/docker/daemon.json
 echo '{' >> /etc/docker/daemon.json
 echo '    '"registry-mirrors": ["https://docker.mirrors.ustc.edu.cn/"] >> /etc/docker/daemon.json
