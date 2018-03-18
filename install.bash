@@ -27,7 +27,7 @@ echo '	'"registry-mirrors": ["https://docker.mirrors.ustc.edu.cn/"] >> /etc/dock
 echo '}' >> /etc/docker/daemon.json
 systemctl reload docker
 fi
-ipaddr=$(ip a show dev $iface | grep "inet" | grep  "brd" | awk '{print $2}' | cut -c 1-)
+ipaddr=$(ip a show dev $iface | grep "inet" | grep "brd" | awk '{print $2}' | cut -c 1-)
 sed -i 's/a.b.c.d/$ipaddr/g' sniproxy.conf
 ip a add 192.168.142.1 dev lo
 mkdir /srv/docker
@@ -50,7 +50,7 @@ ip a add 192.168.142.254 dev lo
 mv /etc/bind/named.conf.options /etc/bind/named.conf.options.old
 mv /etc/bind/named.conf.local /etc/bind/named.conf.local.old
 cp named.conf.options named.conf.local db.rpz /etc/bind/
-echo '*.magi-reco.com           A       192.168.142.1' >> /etc/bind/db.rpz
+echo '*.magi-reco.com		A	192.168.142.1' >> /etc/bind/db.rpz
 systemctl start bind9.service
 fi
 
