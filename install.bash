@@ -1,33 +1,33 @@
 #!/bin/bash
 
-
-interface=eth0
+dir=$(pwd)
+iface=eth0
 
 
 if [ `dpkg -l | grep docker-ce |wc -l` -ne 1 ];then
 apt-get remove docker docker-engine docker.io
 apt-get update
 apt-get install \
-        apt-transport-https \
-        ca-certificates \
-        curl \
-        gnupg2 \
-        software-properties-common
+	apt-transport-https \
+	ca-certificates \
+	curl \
+	gnupg2 \
+	software-properties-common
 curl -fsSL https://mirrors.ustc.edu.cn/docker-ce/linux/debian/gpg | apt-key add -
 add-apt-repository \
-        "deb [arch=amd64] https://mirrors.ustc.edu.cn/docker-ce/linux/debian \
-        $(lsb_release -cs) \
-        stable"
+	"deb [arch=amd64] https://mirrors.ustc.edu.cn/docker-ce/linux/debian \
+	$(lsb_release -cs) \
+	stable"
 apt-get update
 apt-get install docker-ce
 mkdir /etc/docker
 touch /etc/docker/daemon.json
 echo '{' >> /etc/docker/daemon.json
-echo '    '"registry-mirrors": ["https://docker.mirrors.ustc.edu.cn/"] >> /etc/docker/daemon.json
+echo '	'"registry-mirrors": ["https://docker.mirrors.ustc.edu.cn/"] >> /etc/docker/daemon.json
 echo '}' >> /etc/docker/daemon.json
 systemctl reload docker
 fi
-ipaddr=$(ip a show dev $interface | grep "inet" | grep  "brd" | awk '{print $2}' | cut -c 1-)
+ipaddr=$(ip a show dev $iface | grep "inet" | grep  "brd" | awk '{print $2}' | cut -c 1-)
 sed -i 's/a.b.c.d/$ipaddr/g' sniproxy.conf
 ip a add 192.168.142.1 dev lo
 mkdir /srv/docker
@@ -37,12 +37,12 @@ mkdir /srv/docker/sniproxy/log
 cp sniproxy.conf /srv/docker/sniproxy/conf/
 
 docker run -itd \
-        --restart=always \
-        --name=sniproxy \
-        --net=host \
-        -v /srv/docker/sniproxy/conf:/etc/sniproxy \
-        -v /srv/docker/sniproxy/log:/var/log \
-        gaoyifan/sniproxy
+	--restart=always \
+	--name=sniproxy \
+	--net=host \
+	-v /srv/docker/sniproxy/conf:/etc/sniproxy \
+	-v /srv/docker/sniproxy/log:/var/log \
+	gaoyifan/sniproxy
 
 if [ `dpkg -l | grep bind9 |wc -l` -ne 1 ];then
 apt-get install bind9
