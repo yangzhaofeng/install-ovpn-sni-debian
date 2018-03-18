@@ -15,7 +15,7 @@ apt-get install \
         software-properties-common
 curl -fsSL https://mirrors.ustc.edu.cn/docker-ce/linux/debian/gpg | apt-key add -
 add-apt-repository \
-        "deb [arch=amd64] https://mirrors.ustc.edu.cn/docker-ce/debian \
+        "deb [arch=amd64] https://mirrors.ustc.edu.cn/docker-ce/linux/debian \
         $(lsb_release -cs) \
         stable"
 apt-get update
