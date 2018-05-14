@@ -82,6 +82,8 @@ cp server.conf /srv/docker/openvpn/
 sed -i 's/#net.ipv4.ip_forward=1/net.ipv4.ip_forward=1/g' /etc/sysctl.conf
 sysctl -p
 
+mkdir /var/log/openvpn/
+
 docker run -itd \
 	-v /srv/docker/openvpn/:/etc/openvpn/:ro \
 	-v /var/log/openvpn:/var/log/openvpn \
