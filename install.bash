@@ -98,7 +98,7 @@ docker run -itd \
 touch client1.ovpn
 echo 'client' >> client1.ovpn
 echo 'proto udp' >> client1.ovpn
-echo 'remote $ipaddr 1194' >> client1.ovpn
+echo "remote $ipaddr 1194" >> client1.ovpn
 echo 'nobind' >> client1.ovpn
 echo 'persist-key' >> client1.ovpn
 echo 'persist-tun' >> client1.ovpn
