@@ -25,12 +25,12 @@ touch /etc/docker/daemon.json
 echo '{' >> /etc/docker/daemon.json
 echo '	'"registry-mirrors": ["https://docker.mirrors.ustc.edu.cn/"] >> /etc/docker/daemon.json
 echo '}' >> /etc/docker/daemon.json
-systemctl reload docker
+systemctl restart docker
+mkdir /srv/docker
 fi
 ipaddr=$(ip a show dev $iface | grep "inet" | grep "brd" | awk '{print $2}' | cut -c 1-)
 sed -i 's/a.b.c.d/$ipaddr/g' sniproxy.conf
 ip a add 192.168.142.1 dev lo
-mkdir /srv/docker
 mkdir /srv/docker/sniproxy
 mkdir /srv/docker/sniproxy/conf
 mkdir /srv/docker/sniproxy/log
