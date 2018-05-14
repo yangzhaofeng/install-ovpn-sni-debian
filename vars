@@ -1,4 +1,4 @@
-export EASY_RSA="/etc/openvpn/easy-rsa"
+export EASY_RSA="/srv/docker/openvpn/easy-rsa"
 
 export OPENSSL="openssl"
 export PKCS11TOOL="pkcs11-tool"
