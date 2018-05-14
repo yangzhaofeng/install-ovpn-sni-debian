@@ -65,6 +65,7 @@ mkdir /srv/docker/openvpn/
 cp -r /usr/share/easy-rsa/ /srv/docker/openvpn/
 mv /srv/docker/openvpn/easy-rsa/vars /srv/docker/openvpn/easy-rsa/vars.old
 cp vars /srv/docker/openvpn/easy-rsa/vars
+ln -s /srv/docker/openvpn/easy-rsa/openssl-1.0.0.cnf /srv/docker/openvpn/easy-rsa/openssl.cnf
 source /srv/docker/openvpn/easy-rsa/vars
 /srv/docker/openvpn/easy-rsa/clean-all
 /srv/docker/openvpn/easy-rsa/build-ca
