@@ -79,7 +79,7 @@ source /srv/docker/openvpn/easy-rsa/vars
 /srv/docker/openvpn/easy-rsa/build-key client1
 #mv /srv/docker/openvpn/server.conf /srv/docker/openvpn/server.conf.old
 cp server.conf /srv/docker/openvpn/
-sed -i 's/#net.ipv4.ip_forward=1/net.ipv4.ip_forward=1/g' /etc/sysctl.conf
+sed -i 's/#net.ipv4.ip_forward = 1/net.ipv4.ip_forward = 1/g' /etc/sysctl.conf
 sysctl -p
 
 mkdir /var/log/openvpn/
