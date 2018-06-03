@@ -4,8 +4,7 @@ dir=$(pwd)
 iface=eth0
 
 
-if [ `dpkg -l | grep docker-ce |wc -l` -ne 1 ];then
-apt-get remove docker docker-engine docker.io
+if [ `command -v docker |wc -l` -ne 1 ];then
 apt-get update
 apt-get install \
 	apt-transport-https \
